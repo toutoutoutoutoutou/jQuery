@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>여기는 제목입니다.</title>
+    <style>
+        span {font-size: 30pt;}
+        .redtext { color: #f00;}
+        .italictext { font-style: italic;}
+    </style>
+<!--    <script src="jquery-3.3.1.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-latest.js">
+    </script>
+    <script>
+    $(document).ready(function(){
+         $("span").addClass("redtext");
+        var len=$("span").length;
+        console.log(len);
+    });  //문서가 준비되면 실행해라
+   
+    </script>
+</head>
+<body>
+   <span> simple </span>
+    <script>
+        $("span").addClass("italictext");
+    </script>
+    
+</body>
+</html>

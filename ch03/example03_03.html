@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>엘리먼트의 어트리뷰트 값을 콜백 함수에서 얻어 와서 설정하기</title>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script>
+$(document).ready(function(){
+    /* img 요소에 제시된 title속성을 src속성으로 data-txt 속성을 title과 alt속성으로 지정하되, width와 height속성을 자유롭게 지정 */
+    $("img").attr("width", "300px");
+    $("img").attr("src", function(){
+        return this.title;    
+    });
+    $("img").attr("title", function(){
+        return $(this).attr("data-txt"); //사용자 정의 속성
+    });
+    $("img").attr("alt", function(){
+        return $(this).attr("data-txt"); //사용자 정의 속성
+    });
+});
+
+</script>
+</head>
+<body>
+<center>
+   <img title="img1.jpg" data-txt="야옹이1"/>  
+   <img title="img2.jpg" data-txt="야옹이2"/>  
+   <img title="img3.jpg" data-txt="야옹이3"/>  
+</center>
+</body>
+</html>
