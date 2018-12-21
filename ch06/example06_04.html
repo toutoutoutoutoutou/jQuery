@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>일회성 이벤트 만들기</title>
+<style type="text/css">
+img{ 
+   width: 140px; height: 120px;		
+}
+</style>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script>
+$(function(){
+    //img요소를 클릭할 때 마다 1.5배씩 폭과 높이가 증가되는 기능을 구현
+    //다만 event.target을 이용
+    $("img").one("click", function(event){
+        var $tar = $(event.target);
+        $tar.width($tar.width()*1.5);
+        $tar.height($tar.height()*1.5);
+    });
+});
+</script>
+</head>
+<body>   
+   <img src="../images/im18.jpg">
+</body>
+</html>
