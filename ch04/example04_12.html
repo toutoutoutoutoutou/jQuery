@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>해당 엘리먼트의 모든 부모(조상) 엘리먼트 찾기</title>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script>
+$(document).ready(function(){
+    //b요소의 조상 요소들의 태그를 찾아 b요소에 그 태그를 출력
+    var res = new Array();
+    $("b").parents().each(function(i){
+        res[i]=this.tagName;
+    });
+    $("b").append(res.reverse().join(", "));
+    //html, body, div, p, span
+});
+</script>
+</head>
+<body>
+  <div>
+    <p>
+      <span> <b> 부모 엘리먼트 모두 검색 : </b> </span>
+    </p>
+  </div>
+</body>
+</html>
