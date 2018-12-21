@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>해당 엘리먼트에 형제 엘리먼트로 추가하기</title>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script>
+$(document).ready(function(){
+    //div#content1을 header의 다음 요소로 추가
+    $("<div id='content1'>제일 많이 떠든 사람</div>").insertAfter($("header"));
+    
+    //div#content2를 footer의 이전 요소로 추가
+    $("<div id='content2'>제일 많이 떠든 사람</div>").insertBefore($("footer"));
+});
+</script>
+</head>
+<body>  
+ <header> <h1> 과일 </h1></header>
+
+ <footer> <h3> <i> copyright syj </i> </h3> </footer>
+</body>
+</html>
