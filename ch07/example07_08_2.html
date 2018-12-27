@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -30,29 +30,56 @@
 $(function(){
     var wd=$("#region").width();
     var len=$("#images a").length;
+    var sw = 1;
     console.log(wd, len);
     $("#images").width(wd*len);
     var maxLength= wd*(len-1)*-1;
     var aniLen;
+    var intv = setInterval(function(){ rightMovie(); }, 3000);  //주기적으로 실행할 내용을 셋팅
 
     $(".rightbtn").click(function(){
+        clearInterval(intv); //먼저셋팅된 인터발을 제거, 제거하지
+        rightMovie();
+        intv = setInterval(function(){ rightMovie(); }, 3000);
+    });
+    //not(":animated") 애니매이션중이 아닐때에만 시작
+    //stop() 이미지가 잘리는 경우가 생김 그래서 not을 많이 씀
+    $(".leftbtn").click(function(){
+        clearInterval(intv);
+        leftMovie();
+        intv = setInterval(function(){ leftMovie(); }, 3000);
+    });
+    $("#stop").click(function(){
+        if(sw==1){
+            clearInterval(intv);
+            $(this).text("재생");
+        }else{
+            intv = setInterval(function(){ rightMovie(); }, 3000);
+            $(this).text("정지");
+        }
+        sw=sw*-1;
+        
+    });
+    
+    function rightMovie(){
         aniLen = parseInt($("#images").css("margin-left"));
         if(aniLen>maxLength){
         $("#images").not(":animated").animate({"margin-left":"-="+wd+"px"}, 500);  
         }else{
             $("#images").not(":animated").animate({"margin-left":"0px"}, 500);
         }
-    });
-    //not(":animated") 애니매이션중이 아닐때에만 시작
-    //stop() 이미지가 잘리는 경우가 생김 그래서 not을 많이 씀
-    $(".leftbtn").click(function(){
+    }
+    
+    function leftMovie(){
         aniLen = parseInt($("#images").css("margin-left"));
         if(aniLen<0){
         $("#images").not(":animated").animate({"margin-left":"+="+wd+"px"},500);
         }else{
             $("#images").not(":animated").animate({"margin-left":maxLength+"px"}, 500);
         }
-    });
+    }
+    
+    
 });
 </script>
 </head>
@@ -70,5 +97,6 @@ $(function(){
 		<button class="leftbtn">&laquo;</button>
 		<button class="rightbtn">&raquo;</button>
 	</div>
+	<button id="stop">정지</button>
 </body>
 </html>
