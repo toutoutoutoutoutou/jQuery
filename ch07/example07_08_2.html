@@ -5,18 +5,15 @@
 <title>사용자 효과</title>
 <style>
 #region { 
-  position: relative; width: 225px; height:225px;
+  position: relative; width: 200px; height:280px;
   overflow:hidden;  margin:auto;
 }
-
 #images{
-  width: 450px; height: auto;
+  width: 400px; height: auto;
 }
-    #images a {
-        display: block; width: 225px; float:left;
-    }
+#images a { display:block; width: 200px; float:left; }    
 #images a img { 
-  width:225px; height:auto; 
+  width:200px; height:auto; 
   border:0; position: relative;}
 
 #direction {
@@ -28,69 +25,60 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
 $(function(){
-    var wd=$("#region").width();
-    var len=$("#images a").length;
+    var wd = $("#region").width();
+    var len = $("#images a").length;
     var sw = 1;
-    console.log(wd, len);
     $("#images").width(wd*len);
-    var maxLength= wd*(len-1)*-1;
+    var maxLength = wd*(len-1)*-1;
     var aniLen;
-    var intv = setInterval(function(){ rightMovie(); }, 3000);  //주기적으로 실행할 내용을 셋팅
-
+    var intv = setInterval(function(){ rightMovie(); }, 3000);
     $(".rightbtn").click(function(){
-        clearInterval(intv); //먼저셋팅된 인터발을 제거, 제거하지
+        clearInterval(intv);
         rightMovie();
         intv = setInterval(function(){ rightMovie(); }, 3000);
     });
-    //not(":animated") 애니매이션중이 아닐때에만 시작
-    //stop() 이미지가 잘리는 경우가 생김 그래서 not을 많이 씀
     $(".leftbtn").click(function(){
         clearInterval(intv);
         leftMovie();
-        intv = setInterval(function(){ leftMovie(); }, 3000);
+        intv = setInterval(function(){ rightMovie(); }, 3000);
     });
     $("#stop").click(function(){
-        if(sw==1){
-            clearInterval(intv);
-            $(this).text("재생");
-        }else{
+        if(sw==1) {
+            clearInterval(intv); 
+            $("#stop").text("재생");
+        } else {
             intv = setInterval(function(){ rightMovie(); }, 3000);
-            $(this).text("정지");
+            $("#stop").text("정지");
         }
         sw=sw*-1;
-        
     });
-    
     function rightMovie(){
         aniLen = parseInt($("#images").css("margin-left"));
         if(aniLen>maxLength){
-        $("#images").not(":animated").animate({"margin-left":"-="+wd+"px"}, 500);  
-        }else{
-            $("#images").not(":animated").animate({"margin-left":"0px"}, 500);
+            $("#images").not(":animated").animate({"margin-left" : "-="+wd+"px" }, 500); 
+        } else {
+            $("#images").not(":animated").animate({"margin-left" : "0px" }, 500); 
         }
     }
-    
     function leftMovie(){
         aniLen = parseInt($("#images").css("margin-left"));
-        if(aniLen<0){
-        $("#images").not(":animated").animate({"margin-left":"+="+wd+"px"},500);
-        }else{
-            $("#images").not(":animated").animate({"margin-left":maxLength+"px"}, 500);
+        if(aniLen<0) {
+            $("#images").not(":animated").animate({"margin-left" : "+="+wd+"px"}, 500);
+        } else {
+            $("#images").not(":animated").animate({"margin-left" : maxLength+"px" }, 500); 
         }
     }
-    
-    
 });
 </script>
 </head>
 <body>
 	<div id="region">
 		<div id="images">
-			<a href="#"><img src="img01.jpg"/></a> 
-			<a href="#"><img src="img02.jpg"/></a>
-			<a href="#"><img src="img03.jpg"/></a>
-			<a href="#"><img src="img04.jpg"/></a>
-			<a href="#"><img src="img05.jpg"/></a>
+			<a href="#"><img src="red1.jpg" /></a> 
+			<a href="#"><img src="red2.jpg" /></a>
+			<a href="#"><img src="red3.jpg" /></a> 
+			<a href="#"><img src="red4.jpg" /></a>
+			<a href="#"><img src="red5.jpg" /></a>
 		</div>
 	</div>
 	<div id="direction">

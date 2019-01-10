@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -26,11 +26,25 @@
 <script>
 $(function(){
     var wd = $("#region").width();
-    $(".leftbtn").click(function(){
-       $("#images").animate({"margin-left" : "-"+wd+"px" }, 500); 
-    });
+    var len = $("#images a").length;
+    $("#images").width(wd*len);
+    var maxLength = wd*(len-1)*-1;
+    var aniLen;
     $(".rightbtn").click(function(){
-       $("#images").animate({"margin-left" : "0px"}, 500); 
+        aniLen = parseInt($("#images").css("margin-left"));
+        if(aniLen>maxLength){
+            $("#images").not(":animated").animate({"margin-left" : "-="+wd+"px" }, 500); 
+        } else {
+            $("#images").not(":animated").animate({"margin-left" : "0px" }, 500); 
+        }
+    });
+    $(".leftbtn").click(function(){
+        aniLen = parseInt($("#images").css("margin-left"));
+        if(aniLen<0) {
+            $("#images").not(":animated").animate({"margin-left" : "+="+wd+"px"}, 500);
+        } else {
+            $("#images").not(":animated").animate({"margin-left" : maxLength+"px" }, 500); 
+        }
     });
 });
 </script>

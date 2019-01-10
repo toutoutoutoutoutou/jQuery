@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <style>
 #region { 
   position: relative; width: 200px; height:280px;
-  overflow:hidden;  margin:auto;
+  overflow:hidden; margin:auto;
 }
 #images{
   width: 400px; height: auto;
@@ -23,16 +23,11 @@
 .rightbtn{margin-left:290px;margin-top:10px;}
 </style>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="loopSlider2.js"></script>
 <script>
-$(function(){
-    var wd = $("#region").width();
-    $(".leftbtn").click(function(){
-       $("#images").animate({"margin-left" : "-"+wd+"px" }, 500); 
+    $(document).ready(function(){
+        $("body").loopSlider();
     });
-    $(".rightbtn").click(function(){
-       $("#images").animate({"margin-left" : "0px"}, 500); 
-    });
-});
 </script>
 </head>
 <body>
@@ -40,14 +35,15 @@ $(function(){
 		<div id="images">
 			<a href="#"><img src="red1.jpg" /></a> 
 			<a href="#"><img src="red2.jpg" /></a>
-			<a href="#"><img src="red3.jpg" /></a> 
-			<a href="#"><img src="red4.jpg" /></a>
-			<a href="#"><img src="red5.jpg" /></a>
+            <a href="#"><img src="red3.jpg" /></a>
+            <a href="#"><img src="red4.jpg" /></a>
+            <a href="#"><img src="red5.jpg" /></a>			
 		</div>
 	</div>
 	<div id="direction">
 		<button class="leftbtn">&laquo;</button>
 		<button class="rightbtn">&raquo;</button>
 	</div>
+	<button id="stop">정지</button>
 </body>
 </html>
