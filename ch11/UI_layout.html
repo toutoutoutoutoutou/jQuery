@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery UI Basic</title>
+    <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.css" />
+    <style>
+        * { margin: 0px; padding: 0px; } 
+        html, body { font-size: 62.5%; height:100%;  }
+
+        .item {margin: 3px;padding: 5px;}
+        .item > img { width: 100px; height: 100px;}
+        #header { height:80px; line-height:80px;	text-align:center; color:white; }
+        .title1 { font-size:28px; }
+        #wrap { overflow: hidden;  }
+        #wrap > div { float: left; }
+        #dock { position:fixed; min-height: 120px; width: 100%; bottom: 0px; z-index: 1;}
+        #dock > div { float: right; }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script>
+            $(document).ready(function () {
+                for (var i = 0; i < 21; i++) {
+                    var icon = '';
+                    icon += '<div class="ui-widget-content ui-corner-all item">';
+                    icon += '    <img src="' + i + '.png">';
+                    icon += '</div>';
+                    $('#wrap').append(icon);
+                }
+                $('#wrap > div').draggable({
+                    helper:''
+                })
+            });
+    </script>
+</head>
+<body>
+    <header id="header" class="ui-state-error">
+	<h2 class="title1">Market-Layout</h2>
+    </header>
+    <div id="wrap">
+
+    </div>
+    <div id="dock" class="ui-state-error">
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>jQuery UI FileUploading </title>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/start/jquery-ui.css" type="text/css">
+<link rel="stylesheet" href="jquery.ui.plupload.css" type="text/css">
+<style>
+#subBtn { display:block; width:180px; height: 40px; margin:0 auto;
+    line-height:40px; outline:0; border:0; border-radius:21px;
+    background:#0178ae; color:#fff; cursor:pointer; }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+
+<!-- production -->
+<script src="plupload.full.min.js"></script>
+<script src="jquery.ui.plupload.js"></script>
+
+
+</head>
+<body style="font: 13px Verdana; background: rgb(238, 238, 238); color: rgb(51, 51, 51); zoom: 1;">
+
+<h1>이미지 업로드 하기</h1>
+<ol>
+    <li>파일을 선택하거나 드래그하여 이미지 추가</li>
+    <li>업로드 시작 단추 클릭</li>
+    <li>하단 에디터로 이미지 넣기 단추 클릭</li>
+</ol>
+
+<form id="form" method="post" action="fileupload.php">
+	<div id="uploader">
+	    <div class="plupload_wrapper">
+	        <div class="ui-widget-content plupload_container ui-resizable plupload_view_thumbs" id="uploader_container">    <div class="ui-state-default ui-widget-header plupload_header">
+	            <div class="plupload_header_content">
+	                <div class="plupload_logo"> </div>
+	                    <div class="plupload_header_title">Select files</div>
+	                        <div class="plupload_header_text">Add files to the upload queue and click the start button.</div>
+	                        <div class="plupload_view_switch ui-buttonset" style="display: block;">
+	                            <input type="radio" id="uploader_view_list" name="view_mode_uploader" checked="checked" class="ui-helper-hidden-accessible">
+	                            <label class="plupload_button ui-button ui-widget ui-state-default ui-button-icon-only ui-corner-left" for="uploader_view_list" data-view="list" role="button" aria-disabled="false" title="List" aria-pressed="false">
+	                                <span class="ui-button-text">List</span>
+	                                <span class="ui-button-icon-secondary ui-icon ui-icon-grip-dotted-horizontal"></span>
+	                            </label>
+	                            <input type="radio" id="uploader_view_thumbs" name="view_mode_uploader" class="ui-helper-hidden-accessible">
+	                            <label class="plupload_button ui-button ui-widget ui-state-default ui-button-icon-only ui-corner-right ui-state-active" for="uploader_view_thumbs" data-view="thumbs" role="button" aria-disabled="false" title="Thumbnails" aria-pressed="true">
+	                                <span class="ui-button-text">Thumbnails</span>
+	                                <span class="ui-button-icon-secondary ui-icon ui-icon-image"></span>
+	                           </label>
+	                       </div>
+	                   </div>
+	               </div>
+	               <table class="plupload_filelist plupload_filelist_header ui-widget-header">
+	                   <tbody>
+	                       <tr>
+	                           <td class="plupload_cell plupload_file_name">Filename</td>
+	                           <td class="plupload_cell plupload_file_status">Status</td>
+	                           <td class="plupload_cell plupload_file_size">Size</td>
+	                           <td class="plupload_cell plupload_file_action">&nbsp;</td>
+                           </tr>
+                       </tbody>
+                   </table>
+                   <div class="plupload_content plupload_dropbox" id="uploader_dropbox">
+                       <div class="plupload_droptext">Drag files here.</div>
+                       <ul class="plupload_filelist_content" id="uploader_filelist" unselectable="on"> </ul>
+                       <div class="plupload_clearer">&nbsp;</div>
+                   </div>
+                   <table class="plupload_filelist plupload_filelist_footer ui-widget-header"> 
+                       <tbody>
+                           <tr>
+                               <td class="plupload_cell plupload_file_name">
+                                   <div class="plupload_buttons" id="uploader_buttons"><!-- Visible -->
+                                       <a class="plupload_button plupload_add ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="uploader_browse" role="button" aria-disabled="false" style="z-index: 1;">
+                                           <span class="ui-button-icon-primary ui-icon ui-icon-circle-plus"></span>
+                                           <span class="ui-button-text">Add Files</span>
+                                       </a>&nbsp;
+                                       <a class="plupload_button plupload_start ui-button ui-widget ui-state-default ui-corner-all ui-button-disabled ui-state-disabled ui-button-text-icon-primary" id="uploader_start" role="button" aria-disabled="true">
+                                           <span class="ui-button-icon-primary ui-icon ui-icon-circle-arrow-e"></span>
+                                           <span class="ui-button-text">Start Upload</span>
+                                       </a>&nbsp;
+                                       <a class="plupload_button plupload_stop plupload_hidden ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="uploader_stop" role="button" aria-disabled="false">
+                                           <span class="ui-button-icon-primary ui-icon ui-icon-circle-close"></span>
+                                           <span class="ui-button-text">Stop Upload</span>
+                                       </a>&nbsp;
+                                       <div id="html5_1d1danllq11dlnpf1km21ooqvdc3_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 0px; left: 0px; width: 94px; height: 28px; overflow: hidden; z-index: 0;">
+                                           <input id="html5_1d1danllq11dlnpf1km21ooqvdc3" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/gif,image/png">
+                                       </div>
+                                   </div>
+                                   <div class="plupload_started plupload_hidden">
+                                   <!-- Hidden -->
+                                       <div class="plupload_progress plupload_right">
+                                           <div class="plupload_progress_container ui-progressbar ui-widget ui-widget-content ui-corner-all" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                               <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0%;"></div>
+                                           </div>
+                                       </div>
+                                       <div class="plupload_cell plupload_upload_status"></div>
+                                       <div class="plupload_clearer">&nbsp;</div>
+                                   </div>
+                               </td>
+                               <td class="plupload_file_status">
+                                  <span class="plupload_total_status">0%</span>
+                               </td>
+                               <td class="plupload_file_size">
+                                   <span class="plupload_total_file_size">0 kb</span>
+                               </td>
+                               <td class="plupload_file_action"></td>
+                           </tr>
+                       </tbody>
+                   </table>
+                   <div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div>
+               </div>
+               <input class="plupload_count" value="0" type="hidden" id="uploader_count" name="uploader_count">
+           </div>
+       </div>
+	<br>
+	<p align="center" style="padding-top:7px;"><input type="submit" value="에디터로 이미지 넣기" id="subBtn"></p>
+</form>
+
+<script>
+$(function(){
+    $("#uploader").plupload({
+        // 구현 가능한 기반 언어 및 도구
+        runtimes : 'html5,flash,silverlight,html4', 
+        // 실제 데이터베이스에 접근하여 파일을 업로드해줄 서버 문서 지정
+        url:'fileupload.php',
+        // 최대 한 번에 업로드 할 수 있는 파일수 제한 설정
+        max_file_count:100,
+        // 최대 이미지 파일의 용량 설정
+        chunk_size:'1mb',
+        // 파일 이름 중복되지 않게 업로드한 파일명을 그대로 사용 설정
+        unique_names : true,
+        filters : {
+            // 파일 최대 총 용량 지정
+            max_file_size : '1000mb',
+            // 업로드 할 수 있는 파일 타입 지정
+            mime_types : [
+                {title:"Image files", extensions:"jpg,gif,png,jpeg"}
+            ]
+            
+        },
+        // 파일 이름 변경 가능 여부
+        rename : true,
+        // 정렬 기능 여부 설정
+        sortable: true,
+        // 드래그&드롭 작동 가능 여부 설정(html5에서만 가능)
+        dragdrop: true,
+        // 보기 모드 지정
+        views:{
+            list:true, //리스트 방식으로 보기
+            thumbs:true, //썸네일 방식으로 보기
+            active:'thumbs' //썸네일 드래그시 작동 가능 여부 지정
+        },
+        flash_swf_url:'Moxie.swf', // 플래시로 동작 가능한 리소스 지정
+        silverlight_xap_url: 'Moxie.xap' //실버라이트로 동작 가능한 리소스 지정
+        
+    });
+    $("#form").submit(function(e){
+        // 큐 메모리의 대기열에 있는 파일을 대상으로 업로드
+        if($("#uploader").plupload('getFiles').length > 0){
+            $("#uploader").on('complete', function(){
+                $("#form")[0].submit();
+            });
+            $("#uploader").plupload('start');
+        }else{
+            alert("파일!!");
+        }
+        return false;
+    });
+});
+</script>
+
+
+</body>
+</html>
