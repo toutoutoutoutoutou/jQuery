@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>jQuery UI Effects - Animate demo</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="jui.css" />
+  <style>
+    .toggler { width: 500px; height: 200px; position: relative; }
+    #button { padding: .5em 1em; text-decoration: none; position: absolute; bottom: 200px; left: 200px; z-index: 999;}
+    #effect { width: 240px; height: 135px; padding: 0.4em; position: relative; background: #fff; }
+    #effect h3 { margin: 0; padding: 0.4em; text-align: center; }
+  </style>
+  <script>
+      $(function(){
+          //#button을 한번 클릭하면, #effect의 배경색 #aa0000, 글자색을 #fff, 폭 500, 높이 300으로 1초 동안 변경되는 애니메이션을 작성
+          //#button을 두번 클릭하면, #effect의 배경색 #fff, 글자색을 #000, 폭 240, 높이 135로 1초 동안 변경되는 애니메이션을 작성
+          //위 모션을 교대로 수행할 수 있도록 구현
+          var sw = true;
+          $("#button").click(function(){
+              if(sw){
+                $("#effect").animate({"background-color":"#aa0000", "color":"#fff", "width":500, "height":300}, 1000 );    
+              }else{
+                  $("#effect").animate({"background-color":"#fff", "color":"#000", "width":240, "height":135}, 1000 );
+              }
+              sw = !sw;
+          })
+      })
+      
+  </script>
+</head>
+<body>
+ 
+<div class="toggler">
+  <div id="effect" class="ui-widget-content ui-corner-all">
+    <h3 class="ui-widget-header ui-corner-all">Animate</h3>
+    <p>
+      Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
+    </p>
+  </div>
+</div>
+ 
+<a href="#" id="button" class="ui-state-default ui-corner-all">Toggle Effect</a>
+ 
+ 
+</body>
+</html>
